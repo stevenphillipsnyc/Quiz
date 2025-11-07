@@ -691,6 +691,22 @@
   </main>
 
   <script>
+  // Shuffle the answer order for each question on page load
+  document.addEventListener("DOMContentLoaded", () => {
+    const optionLists = document.querySelectorAll(".options");
+    optionLists.forEach((list) => {
+      const items = Array.from(list.children);
+      // Fisher–Yates shuffle
+      for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+      }
+      // Re-append in new order
+      items.forEach((item) => list.appendChild(item));
+    });
+  });
+
+
     // Character definitions & blurbs
     const CHARACTERS = {
       hannah: {
